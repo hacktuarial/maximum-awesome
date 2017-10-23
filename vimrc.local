@@ -1,20 +1,9 @@
-set nocursorline " don't highlight current line
-
 " keyboard shortcuts
 inoremap jj <ESC>
 
 " highlight search
 "set hlsearch
 "nmap <leader>hl :let @/ = ""<CR>
-
-" gui settings
-if (&t_Co == 256 || has('gui_running'))
-  if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme solarized
-  else
-    colorscheme desert
-  endif
-endif
 
 " Disambiguate ,a & ,t from the Align plugin, making them fast again.
 "
@@ -31,3 +20,30 @@ function! s:RemoveConflictingAlignMaps()
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+
+" added by Tim
+" set number
+:set relativenumber
+
+" nvim-r
+let R_assign=0
+let R_in_buffer = 0
+let R_applescript = 0
+let R_tmux_split = 1
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" lintr
+let g:syntastic_enable_r_lintr_checker = 1
+let g:syntastic_r_checkers = ['lintr']
+
+" Use F5 to delete all trailing whitespace
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
