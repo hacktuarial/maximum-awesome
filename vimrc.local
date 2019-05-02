@@ -23,6 +23,7 @@ silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
 
 " added by Tim
+set clipboard=unnamed
 " set number
 :set relativenumber
 
